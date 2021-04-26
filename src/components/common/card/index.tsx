@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { BuyOrSellButton } from "../button/BuyOrSell";
 
 const Wrapper = styled.div`
-  border: 2px solid red;
   display: flex;
   justify-content: center;
   height: 100%;
