@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import "./App.css";
 
+import { Header } from "../src/components/common/header/index";
 import { TradingWith } from "../src/components/common/TradingWith/index";
 import { CardLeft } from "../src/components/common/CardLeft/index";
 import { CardRight } from "../src/components/common/CardRight/index";
@@ -25,6 +26,7 @@ const MainContent = styled.div `
 function App() {
   return (
     <Container>
+      {/* <Header /> */}
       <TradingContainer>
         <TradingWith />
       </TradingContainer>

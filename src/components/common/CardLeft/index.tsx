@@ -16,25 +16,24 @@ const Menu = styled.div`
   justify-content: space-between;
   width: 30%;
   height: 60vh;
-  border-radius: 8px 0 0 8px;
-  border-right: 0.5px solid black;
+  border-radius: 0 0 0 10px;
+  border-left: 4px solid #424542;
+  border-bottom: 4px solid #424542;
+  border-right: 0.5px solid gray;
   padding: 1em 0.5em;
-  background: rgb(194,193,196);
-  background: linear-gradient(0deg, rgba(194,193,196,1) 0%, rgba(226,226,235,1) 35%, rgba(255,255,255,1) 100%);
-  box-shadow:  -20px 20px 60px #bebebe,
-             20px -20px 60px #ffffff;
+  background: linear-gradient(to bottom, #000000 0%, #8e8ea7 42%, #ffffff 100%);
 `;
 
 const Header = styled.h1 `
   font-size: 1.3em;
   margin-left: 1em;
-  color: black;
+  color: white;
 `
 
 const Connect = styled.button `
-    border: 1.5px solid black;
+    border: 1.5px solid white;
     border-radius: 15px;
-    color: black;
+    color: white;
     background: transparent;
     padding: 0.5em 1em;
     font-size: 1em;
@@ -45,7 +44,7 @@ const Connect = styled.button `
 
 const Avatar = styled.img `
     width: 4em;
-    border: 2px solid black;
+    border: 2px solid white;
     border-radius: 50%;
     float: left;
     margin-left: 1em;
