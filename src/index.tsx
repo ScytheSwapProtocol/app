@@ -2,10 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { ChainId, Config, DAppProvider } from "@usedapp/core";
+
+const INFURA_ID = process.env.REACT_APP_INFURA_ID;
+
+const config: Config = {
+  readOnlyChainId: ChainId.Rinkeby,
+  readOnlyUrls: {
+    [ChainId.Mainnet]: `https://mainnet.infura.io/v3/${INFURA_ID}`,
+    [ChainId.Rinkeby]: `https://rinkeby.infura.io/v3/${INFURA_ID}`,
+  },
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DAppProvider config={config}>
+      <App />
+    </DAppProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

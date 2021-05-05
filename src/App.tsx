@@ -7,21 +7,22 @@ import { TradingWith } from "../src/components/common/TradingWith/index";
 import { CardLeft } from "../src/components/common/CardLeft/index";
 import { CardRight } from "../src/components/common/CardRight/index";
 
-const Container = styled.div `
+const Container = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
-const TradingContainer = styled.div `
+const TradingContainer = styled.div`
   transform: translateY(13em);
-`
+`;
 
-const MainContent = styled.div `
+const MainContent = styled.div`
   display: flex;
   height: 100vh;
   justify-content: center;
+  margin-top: 34px;
   align-items: center;
-`
+`;
 
 function App() {
   return (
@@ -30,12 +31,12 @@ function App() {
       <TradingContainer>
         <TradingWith />
       </TradingContainer>
-        <MainContent>
-          <CardLeft />
-          <CardRight />
-        </MainContent>
-     </Container>
-  )
+      <MainContent>
+        <CardLeft />
+        <CardRight />
+      </MainContent>
+    </Container>
+  );
 }
 
 export default App;
