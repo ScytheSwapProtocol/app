@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { ChainId, Config, DAppProvider } from "@usedapp/core";
+import { socket, SocketContext } from "./context/socket";
 
 const INFURA_ID = process.env.REACT_APP_INFURA_ID;
 
@@ -17,7 +18,9 @@ const config: Config = {
 ReactDOM.render(
   <React.StrictMode>
     <DAppProvider config={config}>
-      <App />
+      <SocketContext.Provider value={socket}>
+        <App />
+      </SocketContext.Provider>
     </DAppProvider>
   </React.StrictMode>,
   document.getElementById("root")
