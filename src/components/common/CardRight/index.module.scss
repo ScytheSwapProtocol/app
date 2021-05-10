@@ -1,5 +1,5 @@
 .card {
-  height: 60vh;
+  height: 580px;
   width: 30%;
   border-radius: 0px 8px 8px 0px;
   border-left: 0.5px solid gray;
@@ -9,18 +9,23 @@
   background: linear-gradient(to bottom, #000000 0%, #8e8ea7 42%, #ffffff 100%);
 }
 
-.account {
+.info {
   display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
+  flex-direction: column;
 
-  .avatar {
-    width: 4em;
-    border: 2px solid white;
-    border-radius: 50%;
-    float: right;
-    margin-left: 10px;
-    margin-right: 1em;
+  .account {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+
+    .avatar {
+      width: 4em;
+      border: 2px solid white;
+      border-radius: 50%;
+      float: right;
+      margin-left: 10px;
+      margin-right: 1em;
+    }
   }
 }
 

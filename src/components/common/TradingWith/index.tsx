@@ -17,7 +17,7 @@ const Container = styled.div`
   border-radius: 10px 10px 0 0;
 `;
 
-export const TradingWith = () => {
+const TradingWith = () => {
   const [roomId, setRoomId] = useState<string>("");
   const [roomLabel, setRoomLabel] = useState<string>("");
   const socket = useContext(SocketContext);
@@ -41,3 +41,5 @@ export const TradingWith = () => {
 
   return <Container>{`${roomLabel} - ${roomId}`}</Container>;
 };
+
+export default TradingWith;

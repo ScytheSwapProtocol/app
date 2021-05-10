@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 30%;
-  height: 60vh;
+  height: 580px;
   border-radius: 0 0 0 10px;
   border-left: 4px solid #424542;
   border-bottom: 4px solid #424542;
@@ -37,20 +37,25 @@ button.connect {
   margin-left: 1em;
 }
 
-.account {
+.info {
   display: flex;
-  align-items: center;
-  flex-direction: row;
+  flex-direction: column;
 
-  img.avatar {
-    width: 4em;
-    border: 2px solid white;
-    border-radius: 50%;
-    float: left;
-    margin-left: 1em;
-  }
+  .account {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 
-  & > span {
-    margin-left: 10px;
+    img.avatar {
+      width: 4em;
+      border: 2px solid white;
+      border-radius: 50%;
+      float: left;
+      margin-left: 1em;
+    }
+
+    & > span {
+      margin-left: 10px;
+    }
   }
 }

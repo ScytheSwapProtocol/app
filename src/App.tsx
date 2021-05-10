@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import "./App.css";
 
-import { TradingWith } from "../src/components/common/TradingWith/index";
-import { CardLeft } from "../src/components/common/CardLeft/index";
-import { CardRight } from "../src/components/common/CardRight/index";
+import TradingWith from "components/common/TradingWith";
+import CardLeft from "components/common/CardLeft";
+import CardRight from "components/common/CardRight";
+import ChatArea from "components/ChatArea";
 
 const Container = styled.div`
   display: flex;
@@ -11,15 +12,14 @@ const Container = styled.div`
 `;
 
 const TradingContainer = styled.div`
-  transform: translateY(13em);
+  margin-top: 34px;
 `;
 
 const MainContent = styled.div`
   display: flex;
   height: 100vh;
   justify-content: center;
-  margin-top: 34px;
-  align-items: center;
+  position: relative;
 `;
 
 function App() {
@@ -32,6 +32,7 @@ function App() {
       <MainContent>
         <CardLeft />
         <CardRight />
+        <ChatArea />
       </MainContent>
     </Container>
   );

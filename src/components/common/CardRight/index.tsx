@@ -6,7 +6,7 @@ import AvatarImg from "assets/images/cryptopunk2.png";
 import styles from "./index.module.scss";
 import { SocketContext } from "context/socket";
 
-export const CardRight = () => {
+const CardRight = () => {
   const { activateBrowserWallet, account, deactivate } = useEthers();
   const socket = useContext(SocketContext);
   const [client, setClient] = useState<string>();
@@ -21,17 +21,26 @@ export const CardRight = () => {
     }
   };
 
-  const handleLeaveRoom = () => {
+  const handleLeaveRoom = (isBroadCast = false) => {
+    if (isBroadCast) {
+      //   alert(`${account} ${roomId}`);
+      console.log(account, roomId, isBroadCast);
+      socket.emit("user_leave_room", { user_wallet: account, room_id: roomId });
+    }
     setClient("");
-    deactivate();
+    if (account === client && account) {
+      alert(account);
+      deactivate();
+    }
   };
 
   useEffect(() => {
-    socket.on("participant_joined", (_: string, wallet: string) => {
+    socket.on("participant_joined", (id: string, wallet: string) => {
       setClient(wallet);
+      setRoomId(id);
     });
-    socket.on("room_dropped", handleLeaveRoom);
-    socket.on("participant_left", handleLeaveRoom);
+    socket.on("room_dropped", () => handleLeaveRoom());
+    socket.on("participant_left", () => handleLeaveRoom());
     socket.on("errors_connect", (message: string) => {
       alert(message);
       handleLeaveRoom();
@@ -55,6 +64,25 @@ export const CardRight = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);
 
+  const renderActiveAccount = () => {
+    return (
+      <section className={styles.info}>
+        <div className={styles.account}>
+          <img className={styles.avatar} src={AvatarImg} alt="avatar" />
+          <span>{client}</span>
+        </div>
+        {account === client && (
+          <button
+            className={styles.connect}
+            onClick={() => handleLeaveRoom(true)}
+          >
+            Leave
+          </button>
+        )}
+      </section>
+    );
+  };
+
   return (
     <div className={styles.card}>
       <div className="card-header">
@@ -64,15 +92,12 @@ export const CardRight = () => {
               Connect as Participant
             </button>
           ) : (
-            (account === client || client) && (
-              <div className={styles.account}>
-                <img className={styles.avatar} src={AvatarImg} alt="avatar" />
-                <span>{client}</span>
-              </div>
-            )
+            (account === client || client) && renderActiveAccount()
           )}
         </>
       </div>
     </div>
   );
 };
+
+export default CardRight;
