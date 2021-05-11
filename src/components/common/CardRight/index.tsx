@@ -5,9 +5,11 @@ import AvatarImg from "assets/images/cryptopunk2.png";
 
 import styles from "./index.module.scss";
 import { SocketContext } from "context/socket";
+import useAllowance from "hooks/useAllowance";
 
 const CardRight = () => {
   const { activateBrowserWallet, account, deactivate } = useEthers();
+  const { allowance, toggleAllowance } = useAllowance();
   const socket = useContext(SocketContext);
   const [client, setClient] = useState<string>();
   const [roomId, setRoomId] = useState<string>();
@@ -28,8 +30,8 @@ const CardRight = () => {
       socket.emit("user_leave_room", { user_wallet: account, room_id: roomId });
     }
     setClient("");
+    setRoomId("");
     if (account === client && account) {
-      alert(account);
       deactivate();
     }
   };
@@ -60,6 +62,8 @@ const CardRight = () => {
         user_wallet: account,
         room_id: roomId,
       });
+    } else if (!account) {
+      handleLeaveRoom();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);
@@ -69,15 +73,24 @@ const CardRight = () => {
       <section className={styles.info}>
         <div className={styles.account}>
           <img className={styles.avatar} src={AvatarImg} alt="avatar" />
+          {client && allowance[client] && <b>(Approved)</b>}
           <span>{client}</span>
         </div>
         {account === client && (
-          <button
-            className={styles.connect}
-            onClick={() => handleLeaveRoom(true)}
-          >
-            Leave
-          </button>
+          <div className={styles.actions}>
+            <button
+              className={styles.button}
+              onClick={() => handleLeaveRoom(true)}
+            >
+              Leave
+            </button>
+            <button
+              className={styles.button}
+              onClick={() => toggleAllowance(roomId)}
+            >
+              {account && allowance[account] ? "Decline" : "Approve"}
+            </button>
+          </div>
         )}
       </section>
     );
@@ -88,7 +101,7 @@ const CardRight = () => {
       <div className="card-header">
         <>
           {!client && !account ? (
-            <button className={styles.connect} onClick={handleJoinRoom}>
+            <button className={styles.button} onClick={handleJoinRoom}>
               Connect as Participant
             </button>
           ) : (

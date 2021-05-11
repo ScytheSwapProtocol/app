@@ -16,7 +16,7 @@
   .account {
     display: flex;
     align-items: center;
-    flex-direction: row-reverse;
+    flex-direction: row;
 
     .avatar {
       width: 4em;
@@ -29,7 +29,13 @@
   }
 }
 
-button.connect {
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+button.button {
   border: 1.5px solid white;
   border-radius: 15px;
   color: white;

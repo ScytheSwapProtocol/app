@@ -48,6 +48,12 @@ const ChatArea = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (!account) {
+      setMessages([]);
+    }
+  }, [account]);
+
   return (
     <form className={styles.chat} onSubmit={handleSubmit(handleSendMessage)}>
       <ul ref={containerRef}>
@@ -73,7 +79,7 @@ const ChatArea = () => {
         placeholder="Type message here"
         disabled={!account}
         className={styles.input}
-        ref={register}
+        ref={register({ required: true })}
       />
     </form>
   );

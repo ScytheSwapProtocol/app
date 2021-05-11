@@ -1,3 +1,4 @@
+import { useEthers } from "@usedapp/core";
 import { SocketContext } from "context/socket";
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
@@ -18,6 +19,7 @@ const Container = styled.div`
 `;
 
 const TradingWith = () => {
+  const { account } = useEthers();
   const [roomId, setRoomId] = useState<string>("");
   const [roomLabel, setRoomLabel] = useState<string>("");
   const socket = useContext(SocketContext);
@@ -38,6 +40,13 @@ const TradingWith = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!account) {
+      setRoomId("");
+      setRoomLabel("");
+    }
+  }, [account]);
 
   return <Container>{`${roomLabel} - ${roomId}`}</Container>;
 };

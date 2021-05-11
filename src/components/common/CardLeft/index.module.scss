@@ -24,7 +24,13 @@
   color: white;
 }
 
-button.connect {
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+button.button {
   border: 1.5px solid white;
   border-radius: 15px;
   color: white;
