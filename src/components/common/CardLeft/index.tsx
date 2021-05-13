@@ -6,6 +6,8 @@ import { useEthers } from "@usedapp/core";
 import styles from "./index.module.scss";
 import { SocketContext } from "context/socket";
 import useAllowance from "hooks/useAllowance";
+import useAddressInfo from "hooks/useAddressInfo";
+import AssetsPanel from "../AssetsPanel";
 
 const TradeWindow = ({ children }: { children: any }) => {
   return <div className={styles.menu}>{children}</div>;
@@ -18,6 +20,7 @@ const CardLeft = () => {
   const [roomId, setRoomId] = useState<string>();
   const [server, setServer] = useState<string>();
   const { allowance, toggleAllowance } = useAllowance();
+  const [addressInfo] = useAddressInfo();
 
   const handleCreateRoom = () => {
     if (account) return;
@@ -71,6 +74,11 @@ const CardLeft = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);
 
+  useEffect(() => {
+    if (addressInfo?.tokens?.length && server === account)
+      console.log(`The owner has ${addressInfo?.tokens?.length} assets`);
+  }, [addressInfo]);
+
   const renderActiveAccount = () => {
     return (
       <section className={styles.info}>
@@ -101,6 +109,7 @@ const CardLeft = () => {
 
   return (
     <TradeWindow>
+      <AssetsPanel owner={true} />
       <div className="card-header">
         <>
           {!server && !account ? (

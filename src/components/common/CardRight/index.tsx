@@ -6,6 +6,8 @@ import AvatarImg from "assets/images/cryptopunk2.png";
 import styles from "./index.module.scss";
 import { SocketContext } from "context/socket";
 import useAllowance from "hooks/useAllowance";
+import useAddressInfo from "hooks/useAddressInfo";
+import AssetsPanel from "../AssetsPanel";
 
 const CardRight = () => {
   const { activateBrowserWallet, account, deactivate } = useEthers();
@@ -13,6 +15,7 @@ const CardRight = () => {
   const socket = useContext(SocketContext);
   const [client, setClient] = useState<string>();
   const [roomId, setRoomId] = useState<string>();
+  const [addressInfo] = useAddressInfo();
 
   const handleJoinRoom = () => {
     if (account) return;
@@ -55,6 +58,11 @@ const CardRight = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (addressInfo?.tokens?.length && client === account)
+      console.log(`The participant has ${addressInfo?.tokens?.length} assets`);
+  }, [addressInfo]);
 
   useEffect(() => {
     if (account && roomId) {
@@ -109,6 +117,7 @@ const CardRight = () => {
           )}
         </>
       </div>
+      <AssetsPanel />
     </div>
   );
 };
