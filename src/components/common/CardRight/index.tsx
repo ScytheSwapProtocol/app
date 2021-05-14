@@ -8,6 +8,7 @@ import { SocketContext } from "context/socket";
 import useAllowance from "hooks/useAllowance";
 import useAddressInfo from "hooks/useAddressInfo";
 import AssetsPanel from "../AssetsPanel";
+import { AssetType } from "constant/types";
 
 const CardRight = () => {
   const { activateBrowserWallet, account, deactivate } = useEthers();
@@ -117,7 +118,17 @@ const CardRight = () => {
           )}
         </>
       </div>
-      <AssetsPanel />
+      <AssetsPanel
+        address={client}
+        assets={[
+          {
+            balance: 2,
+            type: AssetType.ERC721,
+            name: "MMTOKEN",
+            contract: "0xDEC",
+          },
+        ]}
+      />
     </div>
   );
 };

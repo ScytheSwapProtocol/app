@@ -8,6 +8,7 @@ import { SocketContext } from "context/socket";
 import useAllowance from "hooks/useAllowance";
 import useAddressInfo from "hooks/useAddressInfo";
 import AssetsPanel from "../AssetsPanel";
+import { AssetType } from "constant/types";
 
 const TradeWindow = ({ children }: { children: any }) => {
   return <div className={styles.menu}>{children}</div>;
@@ -109,7 +110,24 @@ const CardLeft = () => {
 
   return (
     <TradeWindow>
-      <AssetsPanel owner={true} />
+      <AssetsPanel
+        owner={true}
+        address={server}
+        assets={[
+          {
+            balance: 1,
+            type: AssetType.ERC20,
+            name: "SCoin",
+            contract: "0xABCD",
+          },
+          {
+            balance: 1,
+            type: AssetType.ERC1155,
+            name: "DDEE",
+            contract: "0xABCDZE",
+          },
+        ]}
+      />
       <div className="card-header">
         <>
           {!server && !account ? (
