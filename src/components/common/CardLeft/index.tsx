@@ -78,6 +78,7 @@ const CardLeft = () => {
   useEffect(() => {
     if (addressInfo?.tokens?.length && server === account)
       console.log(`The owner has ${addressInfo?.tokens?.length} assets`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addressInfo]);
 
   const renderActiveAccount = () => {

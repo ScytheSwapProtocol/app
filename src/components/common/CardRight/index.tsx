@@ -63,6 +63,7 @@ const CardRight = () => {
   useEffect(() => {
     if (addressInfo?.tokens?.length && client === account)
       console.log(`The participant has ${addressInfo?.tokens?.length} assets`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addressInfo]);
 
   useEffect(() => {
