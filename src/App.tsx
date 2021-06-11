@@ -11,6 +11,12 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
+const ChatBoxContainer = styled.div`
+  bottom: 0px;
+  left: 0px;
+  position: absolute;
+`
+
 const TradingContainer = styled.div`
   margin-top: 34px;
 `;
@@ -32,8 +38,10 @@ function App() {
       <MainContent>
         <CardLeft />
         <CardRight />
-        <ChatArea />
       </MainContent>
+      <ChatBoxContainer>
+        <ChatArea />
+      </ChatBoxContainer>
     </Container>
   );
 }

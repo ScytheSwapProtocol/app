@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import AvatarImg from "assets/images/cryptopunk-transparent.png";
+import Wave from "assets/images/wave.mp4";
 import { useEthers } from "@usedapp/core";
 
 import styles from "./index.module.scss";
@@ -111,6 +112,11 @@ const CardLeft = () => {
 
   return (
     <TradeWindow>
+      {/* <div className="video_background">
+        <video className="wave" autoPlay loop>
+          <source src={ Wave } type="video/mp4" />
+        </video>
+      </div> */}
       <AssetsPanel
         owner={true}
         address={server}

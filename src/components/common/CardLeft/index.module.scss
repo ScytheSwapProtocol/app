@@ -5,6 +5,7 @@
 }
 
 .menu {
+  // background:  url("/src/assets/images/wave.mp4");
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,8 +17,18 @@
   border-right: 0.5px solid gray;
   padding: 1em 0.5em;
   position: relative;
-  background: linear-gradient(to bottom, #000000 0%, #8e8ea7 42%, #ffffff 100%);
+  background: #000000;
+  opacity: 1;
+  // background: linear-gradient(to bottom, #000000 0%, #8e8ea7 42%, #ffffff 100%);
 }
+
+// .video_background {
+//   z-index: -1;
+// }
+
+// #wave {
+//   z-index: -1;
+// }
 
 .header {
   font-size: 1.3em;
